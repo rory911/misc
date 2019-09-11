@@ -1,12 +1,12 @@
 ### Miscellaneous Algorithms
 
 ```
-Coding examples in various languages.  Each is a simple, stand-alone file
-to be compiled and executed.
+Coding examples in various languages.  Each is a simple, independent file to be compiled
+and run as a stand-alone executable.
 ```
 
 
-### System Sort
+### System Sort for Java and Golang
 
 ```
 Timing analyses of system sort routines in C++, Java, and Golang (see sortIntArray.cpp,
@@ -24,7 +24,7 @@ illustrated with the second diagram.
 Isolated timing analyses of system sort in C++ (see sortIntArray.cpp only)
 ```
 
-<img src="https://github.com/rory911/misc/blob/master/docs/SysSort2.JPG" alt="Figure 2.  System Sort v Quick v Shell" width="600" height="500"/>
+<img src="https://github.com/rory911/misc/blob/master/docs/SysSort2.JPG" alt="Figure 2.  System Sort v Quick v Shell" width="550" height="500"/>
 
 
 ### Opinion
