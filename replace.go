@@ -14,16 +14,16 @@ func main() {
 	arr := []byte("aefdacba")	// original array
 	sub := []byte("bc")		// subarray used for replacement
 
-	fmt.Printf("Original: %s\n", a);
+	fmt.Printf("Original: %s\n", arr);
 
-	for i, v := range a {
+	for i, v := range arr {
 		if (v != 'a') {
 			continue
 		}
-		p = i + (cnt * len(s)) + 1
-		a = append(a[:p], append(s, a[p:]...)...)
+		p = i + (cnt * len(sub)) + 1
+		arr = append(arr[:p], append(sub, arr[p:]...)...)
 		cnt++
 	}
 
-	fmt.Printf("Replaced: %s\n",a)
+	fmt.Printf("Replaced: %s\n", arr)
 }
