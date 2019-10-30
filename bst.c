@@ -8,17 +8,16 @@
 #define	UPPER	999999999
 
 /* Binary tree node  */
-struct node 
-{ 
+typedef struct node { 
 	int data; 
 	struct node *left;
         struct node *right; 
-}; 
+} node_t; 
 
 
 /* Determine whether btree is BST */
 bool
-validBST(struct node *np, int lower, int upper)
+validBST(node_t *np, int lower, int upper)
 {
 	if (np == NULL)
 		return(true);
@@ -31,10 +30,10 @@ validBST(struct node *np, int lower, int upper)
 }
 
 /* Allocate a node with the specified value and NULL pointers */
-struct node*
+node_t *
 newNode(int data) 
 { 
-	struct node* node = (struct node*) malloc(sizeof(struct node)); 
+	node_t *node = (node_t *) malloc(sizeof(struct node)); 
 
 	node->data = data; 
 	node->left = node->right = NULL; 
@@ -43,7 +42,7 @@ newNode(int data)
 
 /* Print 3 levels of a btree with simple values [0-9], and check for BST */
 void
-print_btree(struct node *np)
+print_btree(node_t *np)
 {
 	printf("\n        %d\n", np->data);
 	printf("      /   \\\n");
@@ -63,7 +62,7 @@ print_btree(struct node *np)
 int
 main() 
 { 
-	struct node *root = newNode(4); 
+	node_t *root = newNode(4); 
 
 	root->left = newNode(2); 
 	root->right = newNode(5); 
@@ -80,5 +79,5 @@ main()
 
 	root->right->right->data = 0; 
 	print_btree(root);
-	printf("Exected failure: 0 < 5\n");
+	printf("Exected failure: 0 < 5\n\n");
 } 
