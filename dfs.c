@@ -117,7 +117,7 @@ printGraph(Graph *g)
 
 		printf("Adjacent vertices for %d: ", i);
 		while(np) {
-			printf("%d->", np->vertex);
+			printf("%d, ", np->vertex);
 			np = np->next;
 		}
 		printf("\b\b  \n");
