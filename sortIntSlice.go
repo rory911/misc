@@ -38,14 +38,12 @@ func tm_stats(funcp func([]int), msg string) {
 	elapsed := time.Since(start)
 
 	// Make sure the sort is correct
-	for i,j := 0,1; j < size; i,j = i+1,j+1 {
-		if intSlice[i] > intSlice[j] {
-			fmt.Println(msg, "failed")
-			return
-		}
+	if !sort.IntsAreSorted(intSlice) {
+		fmt.Println(msg, "failed")
+		return
 	}
 
-	// Sort was verified, so just print timing data
+	// Sort was verified, so print timing data
 	fmt.Println(msg, elapsed)
 }
 
