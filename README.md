@@ -2,7 +2,14 @@
 
 ```
 Coding examples in various languages.  Each is a simple, independent file to be compiled
-and run as a stand-alone executable.
+and run as a stand-alone executable.  
+
+For Golang subdirectories, the README file contains instructions for downloading, building,
+and running modules.  In some cases, knowledge of Postman, pdpMyAdmin, SQL, etc., will be
+required to correctly exercise the code.
+
+The remainder of this document examines the default system sort characteristics for C++,
+Java, and Golang.
 ```
 
 
@@ -10,8 +17,8 @@ and run as a stand-alone executable.
 
 ```
 Timing analyses of system sort routines in C++, Java, and Golang (see sortIntArray.cpp,
-sortIntArray.java, sortIntSlice.go).  The first diagram primarily shows timing date for
-the system sort routines in Java and Golang.  Time of execution in C++ is more easily
+sortIntArray.java, sortIntSlice.go) are presented.  The first diagram primarily shows timing
+data for the system sort routines in Java and Golang.  Time of execution in C++ is more easily
 illustrated with the second diagram.
 
 ```
@@ -32,6 +39,6 @@ Isolated timing analyses of system sort in C++ (see sortIntArray.cpp only)
 The system sort routines are fairly efficient.  In the case of Java,  Arrays.sort is
 recommended as a default.  For Golang, however, sort.Ints is currently discouraged
 until more data proves otherwise, say newer versions, optimizations, etc.  In spite
-of the overhead created by activation records, Quick Sort might be a good approach
+of the overhead created by activation records, Quick Sort might still be a good approach
 for Golang programs.
 ```
