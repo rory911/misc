@@ -24,7 +24,7 @@ func main() {
 	tm_stats(shellsort , "    Shell:")
 }
 
-func tm_stats(funcp func([]int), msg string) {
+func tm_stats(sortFuncPtr func([]int), msg string) {
 	const size = 1000000
 	intSlice := make([]int, size)
 
@@ -34,7 +34,7 @@ func tm_stats(funcp func([]int), msg string) {
 	}
 
 	start := time.Now()
-	funcp(intSlice)
+	sortFuncPtr(intSlice)
 	elapsed := time.Since(start)
 
 	// Make sure the sort is correct
@@ -55,18 +55,21 @@ func quicksort(slc []int) {
 
 	left, right := 0, n-1
 	pivot := left + ((right - left)>>1)
-	slc[pivot], slc[right] = slc[right], slc[pivot]
 
-	for i,_ := range slc {
-		if slc[i] < slc[right] {
-			slc[left], slc[i] = slc[i], slc[left]
+	for left < right {
+		for slc[left] < slc[pivot] {
 			left++
+		}
+		for slc[right] > slc[pivot] {
+			right--
+		}
+		if (left < right) {
+			slc[left], slc[right] = slc[right], slc[left]
+			left++
+			right--
 		}
 	}
 
-	slc[left], slc[right] = slc[right], slc[left]
-
-	// Activation records, woof
 	quicksort(slc[:left])
 	quicksort(slc[left+1:])
 }

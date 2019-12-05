@@ -23,15 +23,14 @@ class sortIntArray
 		if (lo >= hi)
 			return;
 
-		int idx = lo + ((hi - lo)>>1);
-		int pivot = a[idx];
+		int pivot = lo + ((hi - lo)>>1);
 		int i = lo, j = hi;
-		while (i <= j) {
-			while (a[i] < pivot)
+		while (i < j) {
+			while (a[i] < a[pivot])
 				i++;
-			while (a[j] > pivot)
+			while (a[j] > a[pivot])
 				j--;
-			if (i <= j) {
+			if (i < j ) {
 				int temp = a[j];
 				a[j] = a[i];
 				a[i] = temp;
@@ -40,11 +39,8 @@ class sortIntArray
 			}
 		}
 		
-		if (lo < j)
-			QuickSort(a, lo, j);
-
-		if (hi > i)
-			QuickSort(a, i, hi);
+		QuickSort(a, lo, i);
+		QuickSort(a, i + 1, hi);
 	}
 
 	public static void ShellSort(int a[]) {

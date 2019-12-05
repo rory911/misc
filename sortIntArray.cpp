@@ -49,10 +49,8 @@ quick_sort(int *bgn, int *end)
 		}
 	}
 
-	if (bgn < j)
-		quick_sort(bgn, j);
-	if (i < end)
-		quick_sort(i, end);
+	quick_sort(bgn, i);
+	quick_sort(i + 1, end);
 }
 
 void
