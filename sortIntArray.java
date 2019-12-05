@@ -20,18 +20,20 @@ import java.lang.*;
 class sortIntArray
 {
 	public static void QuickSort(int a[], int lo, int hi) {
-		if (lo >= hi)
+		if (lo >= hi - 1)
 			return;
 
-		int pivot = lo + ((hi - lo)>>1);
-		int i = lo, j = hi;
+		int pivot = lo + ((hi - lo + 1)>>1);	// ⌈mid-index⌉
+		int i = lo, j = hi - 1;
 		while (i < j) {
+			int temp;
+
 			while (a[i] < a[pivot])
 				i++;
 			while (a[j] > a[pivot])
 				j--;
-			if (i < j ) {
-				int temp = a[j];
+			if (i < j) {
+				temp = a[j];
 				a[j] = a[i];
 				a[i] = temp;
 				i++;
@@ -39,7 +41,7 @@ class sortIntArray
 			}
 		}
 		
-		QuickSort(a, lo, i);
+		QuickSort(a, lo, i - 1);
 		QuickSort(a, i + 1, hi);
 	}
 
@@ -86,7 +88,7 @@ class sortIntArray
 
 		DescendingOrder(a);
 		bgn = System.currentTimeMillis(); 
-		QuickSort(a, 0, a.length - 1);
+		QuickSort(a, 0, a.length);
 		end = System.currentTimeMillis(); 
 		if (VerifyAscendingOrder(a))
 			System.out.println(" Quick Sort:  " + (end - bgn) + " msec");

@@ -49,12 +49,12 @@ func tm_stats(sortFuncPtr func([]int), msg string) {
 
 func quicksort(slc []int) {
 	n := len(slc)
-	if n < 2 {
+	if (n < 2) {
 		return
 	}
 
 	left, right := 0, n-1
-	pivot := left + ((right - left)>>1)
+	pivot := left + ((right - left + 1)>>1)		// ⌈mid-index⌉
 
 	for left < right {
 		for slc[left] < slc[pivot] {
@@ -70,8 +70,8 @@ func quicksort(slc []int) {
 		}
 	}
 
-	quicksort(slc[:left])
-	quicksort(slc[left+1:])
+	quicksort(slc[:left - 1])
+	quicksort(slc[left + 1:])
 }
 
 func shellsort(slc []int) {

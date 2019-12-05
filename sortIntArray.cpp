@@ -28,11 +28,13 @@ using namespace std;
 void
 quick_sort(int *bgn, int *end)
 {
-	if (bgn >= end - 1)
+	int temp;
+
+	if (bgn >= end)
 		return;
 
 	int *i = bgn;
-	int *pivot = bgn + ((end - bgn)>>1);
+	int *pivot = bgn + ((end - bgn + 1)>>1);	// ⌈mid-index⌉
 	int *j = end;
 	
 	while (i < j) {
@@ -41,7 +43,7 @@ quick_sort(int *bgn, int *end)
 		while (*j > *pivot) 
 			--j;
 		if (i < j) {
-			int temp = *j;
+			temp = *j;
 			*j = *i;
 			*i = temp;
 			i++;
@@ -49,7 +51,7 @@ quick_sort(int *bgn, int *end)
 		}
 	}
 
-	quick_sort(bgn, i);
+	quick_sort(bgn, i - 1);
 	quick_sort(i + 1, end);
 }
 
