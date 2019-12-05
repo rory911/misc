@@ -81,7 +81,6 @@ parse_dbase(lex_t lexicon[])
 
 /*
  * Look up words with the same first letter, and only compare matching string lengths.
- * 
  */
 bool
 isWord(lex_t *lp, char str[M * N])
