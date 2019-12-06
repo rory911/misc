@@ -259,7 +259,7 @@ func mysqlRecID(w http.ResponseWriter, r *http.Request) {
 	title, _ := r.URL.Query()["title"]
 	desc, _ := r.URL.Query()["desc"]
 	if !ok || len(id[0]) < 1 {
-		json.NewEncoder(w).Encode("URL: query is invalid or missing"a)
+		json.NewEncoder(w).Encode("URL: query is invalid or missing")
 		return
 	}
 	var mod Modify
@@ -297,7 +297,7 @@ func main() {
 	table = db
 
 	router := http.NewServeMux()
-	router.HandleFunc("/", homePage) 		       // HTML directions
+	router.HandleFunc("/", homePage)		       // HTML directions
         router.HandleFunc("/mysql-records", mysqlRec)
         router.HandleFunc("/mysql-records/query", mysqlRecID)
         http.ListenAndServe(":8080", router)
