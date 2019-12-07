@@ -43,7 +43,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "following JSON records to feed the SQL database:<br>");
 	fmt.Fprintf(w, "<pre>\t<b>ID:</b> <i>string</i><br>")
 	fmt.Fprintf(w, "\t<b>Title:</b> <i>string</i><br>\t<b>Desc:</b> <i>string</i></pre>")
-	fmt.Fprintf(w, "Navigate to <a href='MySQL-records'>mysql-records</a> and use the ")
+	fmt.Fprintf(w, "Navigate to <a href='mysql-records'>MySQL-records</a> and use the ")
 	fmt.Fprintf(w, "RESTful interface for building and modifying the SQL database. ")
 	fmt.Fprintf(w, "&nbsp; Postman and phpMyAdmin are recommended for driving the ")
 	fmt.Fprintf(w, "interface with POST, GET, PUT, PATCH, and DELETE.&nbsp; ")
@@ -157,7 +157,7 @@ func writeRecord(w http.ResponseWriter, r *http.Request, mod Modify) {
 	w.Header().Set("Content-Type", "application/json")
 
 	// Need both title and description
-	if len(mod.title) < 1 || len(mod.desc) < 1 { 
+	if len(mod.title) < 1 || len(mod.desc) < 1 {
 		json.NewEncoder(w).Encode("writeRecord: must specify title and descption")
 		return
 	}
@@ -295,12 +295,11 @@ func main() {
 		log.Fatal(err.Error())
 	}
 	table = db
+	defer db.Close()
 
 	router := http.NewServeMux()
 	router.HandleFunc("/", homePage)		       // HTML directions
         router.HandleFunc("/mysql-records", mysqlRec)
         router.HandleFunc("/mysql-records/query", mysqlRecID)
         http.ListenAndServe(":8080", router)
-
-	defer db.Close()
 }
