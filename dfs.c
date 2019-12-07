@@ -1,3 +1,4 @@
+/*  Replaced by dfs+bfs.c, but retained as legacy code.  */
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -16,12 +17,12 @@ struct graph {
 typedef struct node Node;
 typedef struct graph Graph;
 
-Graph	*createGraph(int vertices);
-void	addEdge(Graph *g, int src, int dst);
-Node	*addNode(int vertex);
-void	insertList(Graph *g, Node *newp, int vertex);
-void	printGraph(Graph *g);
-void	DFS(Graph *g, int vertex);
+static Graph	*createGraph(int vertices);
+static void	addEdge(Graph *g, int src, int dst);
+static Node	*addNode(int vertex);
+static void	insertList(Graph *g, Node *newp, int vertex);
+static void	printGraph(Graph *g);
+static void	DFS(Graph *g, int vertex);
 
 /*
  *  Build and output a graph, then visit the nodes using Depth First Search
@@ -45,13 +46,17 @@ int main(void)
 	return 0;
 }
 
-Graph *
+static Graph *
 createGraph(int vertices)
 {
-	Graph *g=malloc(sizeof(Graph));
+	Graph *g = malloc(sizeof(Graph));
+	if (g == NULL)
+		exit(EXIT_FAILURE);
 
 	g->visited = malloc(vertices * sizeof(int));
 	g->adjLists = malloc(vertices * sizeof(Node));
+	if (g->visited == NULL || g->adjLists == NULL)
+		exit(EXIT_FAILURE);
 	g->numVertices = vertices;
 
 	for(int i = 0; i < vertices; i++) {
@@ -62,7 +67,7 @@ createGraph(int vertices)
 	return (g);
 }
 
-void
+static void
 addEdge(Graph *g, int src, int dst)
 {
 	Node *newp;
@@ -74,17 +79,19 @@ addEdge(Graph *g, int src, int dst)
 	insertList(g, newp, src);
 }
 
-Node *
+static Node *
 addNode(int vertex)
 {
 	Node *newNode = malloc(sizeof(Node));
+	if (newNode == NULL)
+		exit(EXIT_FAILURE);
 
 	newNode->vertex = vertex;
 	newNode->next = NULL;
 	return (newNode);
 }
 
-void
+static void
 insertList(Graph *g, Node *newp, int vertex)
 {
 	Node *prev, *curr;
@@ -109,7 +116,7 @@ insertList(Graph *g, Node *newp, int vertex)
 	newp->next = curr;
 }
 
-void
+static void
 printGraph(Graph *g)
 {
 	for(int i = 0; i < g->numVertices; i++) {
@@ -124,7 +131,7 @@ printGraph(Graph *g)
 	}
 }
 
-void
+static void
 DFS(Graph *g, int vertex)
 {
 	g->visited[vertex] = true;

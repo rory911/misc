@@ -26,7 +26,7 @@ int	digraph[][N] = {{0,2,0,0,0,3},
 bool	visited[N];
 int	level;
 
-void
+static void
 init_search(void)
 {
 	for (int i = 0; i < N; ++i)
@@ -35,7 +35,7 @@ init_search(void)
 	printf("   ");
 }
 
-void
+static void
 visit(int vertex)
 {
 	if (visited[vertex] == false) {
@@ -44,7 +44,7 @@ visit(int vertex)
 	}
 }
 
-void
+static void
 dfs(int vertex)
 {
 	visit(vertex);
@@ -55,7 +55,7 @@ dfs(int vertex)
         }
 }
 
-void
+static void
 bfs(int vertex)
 {
 	if (level == N - 1)
@@ -94,4 +94,5 @@ main()
 		bfs(i);
 		fini_search();
 	}
+	return(0);
 }

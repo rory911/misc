@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <mcheck.h>
 
 //
@@ -80,12 +80,15 @@ static node_t *
 construct(int num)
 {
 	node_t *head, *node = malloc(sizeof(node_t));
-
+	if (node == NULL)
+		exit(EXIT_FAILURE);
 	head = node;
 	node->value = 0;
 
 	for (int i = 1; i < num; ++i) {
 		node->link = malloc(sizeof(node_t));
+		if (node->link == NULL)
+			exit(EXIT_FAILURE);
 		node->link->value = i;
 		node = node->link;
 	}

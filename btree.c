@@ -9,9 +9,8 @@ struct node
         struct node *right; 
 }; 
   
-struct node* newNode(int data); 
-int max(int a, int b); 
-int height(struct node* node); 
+static int		max(int a, int b); 
+static int		height(struct node* node); 
   
 /*
  * Compute the diameter, or width, of a btree as the number of nodes along the
@@ -26,7 +25,7 @@ int height(struct node* node);
  *    3) Height of left subtree + height of right subtree + 1
  *
  */
-int
+static int
 diameter(struct node *tree) 
 { 
 	int lheight, rheight, ldiameter, rdiameter; 
@@ -50,7 +49,7 @@ diameter(struct node *tree)
  * Compute the height of a btree as the number of nodes along the
  * longest path from the root node down to the farthest leaf node.
  */
-int
+static int
 height(struct node* tree) 
 { 
 	/* Empty tree */ 
@@ -61,20 +60,22 @@ height(struct node* tree)
 }  
   
 /* Allocate a node with the given data and NULL left and right pointers. */
-struct node*
+static struct node*
 newNode(int data) 
 { 
 	struct node* node = (struct node*) malloc(sizeof(struct node)); 
+	if (node == NULL)
+		exit(EXIT_FAILURE);
 
 	node->data = data; 
 	node->left = node->right = NULL; 
 	return(node); 
 } 
   
-int
+static int
 max(int a, int b) 
 { 
-	  return (a >= b)? a: b; 
+	return (a >= b)? a: b; 
 }     
   
 int
@@ -95,4 +96,5 @@ main()
 	printf("  4   5\n\n");
 	printf("Diameter is %d\n", diameter(root)); 
 	printf("Height is %d\n", height(root));
+	return(0);
 } 

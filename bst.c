@@ -16,7 +16,7 @@ typedef struct node {
 
 
 /* Determine whether btree is BST */
-bool
+static bool
 validBST(node_t *np, int lower, int upper)
 {
 	if (np == NULL)
@@ -25,23 +25,25 @@ validBST(node_t *np, int lower, int upper)
 	if (np->data < lower || np->data > upper)
 		return(false);
         
-        return (validBST(np->left, lower, np->data-1) &&
+        return(validBST(np->left, lower, np->data-1) &&
 	    validBST(np->right, np->data+1, upper));
 }
 
 /* Allocate a node with the specified value and NULL pointers */
-node_t *
+static node_t *
 newNode(int data) 
 { 
 	node_t *node = (node_t *) malloc(sizeof(struct node)); 
+	if (node == NULL)
+		exit(EXIT_FAILURE);
 
 	node->data = data; 
 	node->left = node->right = NULL; 
-	return(node); 
+	return(node);
 } 
 
 /* Print 3 levels of a btree with simple values [0-9], and check for BST */
-void
+static void
 print_btree(node_t *np)
 {
 	printf("\n        %d\n", np->data);
@@ -80,4 +82,5 @@ main()
 	root->right->right->data = 0; 
 	print_btree(root);
 	printf("Exected failure: 0 < 5\n\n");
+	exit(0);
 } 
