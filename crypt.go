@@ -55,8 +55,8 @@ func decrypt(data []byte, passwrd string) []byte {
 //	To open, usage: crypt -d < ifile > ofile
 //
 // Unlike the original UNIX crypt, this Golang version requires a user to enter
-// the key from the console (see getpass(3)), but this Golang version is very
-// much smaller than the original crypt.c
+// the key from the terminal (see getpass(3)), but then again, this Golang version
+// is much smaller than the original crypt.c
 //
 func main() {
 	args := os.Args
