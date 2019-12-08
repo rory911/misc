@@ -45,17 +45,18 @@ func decrypt(data []byte, passwrd string) []byte {
 }
 
 //
-// A simple unbatched version of crypt(1) using AES. It is primary an example
+// A simple unbatched version of crypt(1) using AES. It is primarily an example
 // of calling C from Golang, along with sealing or opening via the AES module.
-// AES is symmetric, so don't forget the "key," because it's the only password
-// that will open the encrypted data.
+// AES is symmetric, so don't forget the "key," because it's the only thing that
+// will open the encrypted data.
 //
-//	To encrypt, usage: crypt [-e] < ifile > ofile 
+//	To seal, usage: crypt [-e] < ifile > ofile 	(default)
 //
-//	To decrypt, usage: crypt -d < ifile > ofile
+//	To open, usage: crypt -d < ifile > ofile
 //
-// Unlike the original, this Golang version requires a user to enter the key
-// from the console (see getpass(3)).
+// Unlike the original UNIX crypt, this Golang version requires a user to enter
+// the key from the console (see getpass(3)), but this Golang version is very
+// much smaller than the original crypt.c
 //
 func main() {
 	args := os.Args
@@ -65,10 +66,10 @@ func main() {
 	data, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
 		fmt.Printf("%s: failed to read os.Stdin\n", args[0])
-		return;
+		os.Exit(1)
 	}
 
-	// Either seal or open via AES
+	// Either seal (default), or open via AES
 	crypto := encrypt
 	if len(args) > 1 && args[1] == "-d" {
 		crypto = decrypt
