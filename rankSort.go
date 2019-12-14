@@ -9,7 +9,7 @@ import (
 const	N = 200
 var	random, rank, sorted  [N]int
 
-// O(N) loop to rank a given element and store in a sorted array
+// O(N) loop to rank a given element, then vector into a sorted array
 //
 func findRank(self int, wg *sync.WaitGroup) {
 	defer wg.Done()
