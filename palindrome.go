@@ -28,14 +28,14 @@ func is_pal1(val uint) bool {
 }
 
 //
-// Reverse bits and test for equality with O(N) worst case and 1:1 to input.
+// Reverse bits and test for equality with O(N) worst case and 1:1 ratio to input.
 //
 func is_pal2(val uint) bool {
 	fwd, rev := val, uint(0)
 	for ; val > 0; val >>= 1 {
 		rev <<= 1
 		if (val & 1) == 1 {
-			rev ^= 1
+			rev |= 1
 		}
 	}
 	return fwd == rev
