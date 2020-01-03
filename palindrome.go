@@ -6,21 +6,22 @@ const N = 32	// Upper limit of bit count
 
 //
 // Copy to slice and test the ends toward the middle with O(N) worst case,
-// and working storage has a 1:32 ratio to input size.
+// but working storage has a 1:32 ratio to input size.
 //
 func is_pal1(val uint) bool {
 	var	siz int
 	var	slc [N]uint
 
-	for siz = 0; siz < N && val > 0; siz,val = siz+1,val>>1 {
+	for siz = N-1; siz >= 0 && val > 0; siz,val = siz-1,val>>1 {
 		slc[siz] = val & 1
 	}
 
-	// Leading zeros are stripped at 'siz'
-	fmt.Printf("%13s ", fmt.Sprint(slc[:siz]))
+	// Leading zeros are stripped using 'siz'
+	encode := slc[siz+1:]
+	fmt.Printf("%13s ", fmt.Sprint(encode))
 
-	for i,j := 0,siz-1; i < j; i,j = i+1,j-1 {
-		if slc[i] != slc[j] {
+	for i,j := 0,len(encode)-1; i < j; i,j = i+1,j-1 {
+		if encode[i] != encode[j] {
 			return false
 		}
 	}
@@ -28,7 +29,7 @@ func is_pal1(val uint) bool {
 }
 
 //
-// Reverse bits and test for equality with O(N) worst case and 1:1 ratio to input.
+// Reverse bits and test for equality with O(N) worst case and 1:2 ratio to input.
 //
 func is_pal2(val uint) bool {
 	fwd, rev := val, uint(0)
